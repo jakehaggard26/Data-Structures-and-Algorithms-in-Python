@@ -27,6 +27,30 @@ class TestNode(unittest.TestCase):
         node = Node(Node(1))
         self.assertEqual(node.get_data(), Node(1))
 
+    def test_le(self: Node) -> None:
+        node1 = Node(1)
+        node2 = Node(2)
+        self.assertTrue(node1 < node2)
+        self.assertFalse(node2 < node1)
+
+    def test_lt(self: Node) -> None:
+        node1 = Node(1)
+        node2 = Node(2)
+        self.assertTrue(node1 <= node2)
+        self.assertFalse(node2 <= node1)
+
+    def test_gt(self: Node) -> None:
+        node1 = Node(1)
+        node2 = Node(2)
+        self.assertFalse(node1 > node2)
+        self.assertTrue(node2 > node1)
+
+    def test_ge(self: Node) -> None:
+        node1 = Node(1)
+        node2 = Node(2)
+        self.assertFalse(node1 >= node2)
+        self.assertTrue(node2 >= node1)
+
 
 
 if __name__ == '__main__':
