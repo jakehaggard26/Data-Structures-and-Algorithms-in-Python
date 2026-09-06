@@ -1,5 +1,5 @@
 from DSA.Node.LinearNode import LinearNode
-from DSA.Stack.IStack import IStack
+from DSA.Collections.Stack.IStack import IStack
 
 class Stack(IStack):
 

@@ -1,5 +1,5 @@
 from DSA.Node.LinearNode import LinearNode
-from DSA.Stack.Stack import Stack
+from DSA.Collections.Stack.Stack import Stack
 
 
 def main() -> None:
