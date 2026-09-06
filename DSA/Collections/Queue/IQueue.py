@@ -16,7 +16,7 @@ class IQueue(ABC):
         pass
 
     @abstractmethod
-    def peek(self) -> Node:
+    def first(self) -> Node:
         pass
 
     @abstractmethod
