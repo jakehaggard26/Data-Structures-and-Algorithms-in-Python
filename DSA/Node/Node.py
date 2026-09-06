@@ -1,5 +1,14 @@
 from DSA.Node.INode import INode
 
+"""
+    A simple Node class that implements the INode interface.
+    This class can be used to create nodes for various data structures, such as linked lists, trees, and graphs.
+    The Node class is designed to hold a single piece of data and provides methods for getting and setting that data.
+    It also includes comparison operators for comparing nodes based on their data.
+
+    It's purpose is store data and provide a way to access and modify that data. 
+"""
+
 class Node(INode):
     def __init__(self, data):
         self._data = data

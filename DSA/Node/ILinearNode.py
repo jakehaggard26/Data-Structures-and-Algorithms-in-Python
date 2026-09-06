@@ -1,5 +1,6 @@
 from DSA.Node.INode import INode
 
+
 class ILinearNode(INode):
 
     def __init__(self, data, next=None):
