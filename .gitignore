@@ -109,7 +109,7 @@ ipython_config.py
 # poetry.toml
 
 # Local build notes
-Build Notes/
+# Build Notes/
 
 # pdm
 #   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
