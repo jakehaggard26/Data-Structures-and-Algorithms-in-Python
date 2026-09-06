@@ -3,6 +3,11 @@ from DSA.Stack.IStack import IStack
 
 class Stack(IStack):
 
+    """
+        A stack is a linear data structure that follows the Last In First Out (LIFO) principle.
+        The Stack class provides methods to add, remove, and inspect elements in the stack.
+    """
+
     def __init__(self):
         self._top: LinearNode = None
         self._count: int = 0
@@ -86,3 +91,16 @@ class Stack(IStack):
         """
 
         return self._count
+
+    def to_string(self) -> str:
+        """
+            Returns a string representation of the stack, showing the elements from top to bottom.
+
+            Time Complexity: O(n), where n is the number of nodes in the stack.
+        """
+        elements = []
+        current_node = self._top
+        while current_node is not None:
+            elements.append(str(current_node.get_element()))
+            current_node = current_node.get_next()
+        return "Stack(top -> bottom): " + " -> ".join(elements)

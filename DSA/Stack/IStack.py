@@ -21,3 +21,7 @@ class IStack(ABC):
     @abstractmethod
     def size(self):
         pass
+
+    @abstractmethod
+    def to_string(self):
+        pass

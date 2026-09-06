@@ -71,6 +71,19 @@ class TestStack(unittest.TestCase):
         self.assertEqual(stack.size(), 1)
         self.assertFalse(stack.is_empty())
 
+    def test_to_string_for_empty_stack(self):
+        stack = Stack()
+
+        self.assertEqual(stack.to_string(), "Stack(top -> bottom): ")
+
+    def test_to_string_shows_elements_from_top_to_bottom(self):
+        stack = Stack()
+        stack.push(LinearNode(1))
+        stack.push(LinearNode(2))
+        stack.push(LinearNode(3))
+
+        self.assertEqual(stack.to_string(), "Stack(top -> bottom): 3 -> 2 -> 1")
+
     def test_pop_empty_stack_raises_exception(self):
         stack = Stack()
 
