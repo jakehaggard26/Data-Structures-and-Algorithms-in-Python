@@ -111,6 +111,9 @@ ipython_config.py
 # Local build notes
 # Build Notes/
 
+# AI-generated examples to recreate
+/DSA/Examples/AI Generated Examples to Re-Create/
+
 # pdm
 #   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
 #   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
