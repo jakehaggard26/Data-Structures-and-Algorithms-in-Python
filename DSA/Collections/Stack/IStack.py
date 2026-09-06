@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-
+from DSA.Node.Node import Node
 
 class IStack(ABC):
     @abstractmethod
-    def push(self, item):
+    def push(self, node: Node):
         pass
 
     @abstractmethod
