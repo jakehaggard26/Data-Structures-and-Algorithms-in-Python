@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
-def IStack(ABC):
+
+class IStack(ABC):
     @abstractmethod
     def push(self, item):
         pass
