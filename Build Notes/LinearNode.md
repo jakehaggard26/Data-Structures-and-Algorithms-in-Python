@@ -9,8 +9,8 @@ from DSA.Node.ILinearNode import ILinearNode
 
 class LinearNode(Node, ILinearNode):
 
-    def __init__(self, data, next=None):
-        super().__init__(data)
+    def __init__(self, element, next=None):
+        super().__init__(element)
         self._next = next
 
     def get_next(self):
@@ -26,10 +26,10 @@ The order matters:
 class LinearNode(Node, ILinearNode):
 ```
 
-Because `Node` comes first, `super().__init__(data)` calls `Node.__init__`, which sets:
+Because `Node` comes first, `super().__init__(element)` calls `Node.__init__`, which sets:
 
 ```python
-self._data = data
+self._element = element
 ```
 
 The inheritance chain is:
@@ -42,4 +42,4 @@ LinearNode
     └── INode
 ```
 
-`Node` supplies the data behavior, while `ILinearNode` identifies the class as a linear node and defines the `next` interface. `LinearNode` then supplies the actual `next` implementation.
+`Node` supplies the element behavior, while `ILinearNode` identifies the class as a linear node and defines the `next` interface. `LinearNode` then supplies the actual `next` implementation.

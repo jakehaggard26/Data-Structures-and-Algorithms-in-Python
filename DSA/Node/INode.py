@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 
 class INode(ABC):
     @abstractmethod
-    def get_data(self):
+    def get_element(self):
         pass
 
     @abstractmethod
-    def set_data(self, data):
+    def set_element(self, element):
         pass

@@ -7,21 +7,21 @@ from DSA.Node.Node import Node
 """
     A simple LinearNode class that inherits from the Node class and implements the ILinearNode interface.
     This class can be used to create nodes for linear data structures, such as linked lists or Stacks and Queues.
-    The LinearNode class is designed to hold a single piece of data and a reference to the
-    next node in the structure. It provides methods for getting and setting the data and the next node.
+    The LinearNode class is designed to hold a single element and a reference to the
+    next node in the structure. It provides methods for getting and setting the element and the next node.
 """
 
 class LinearNode(Node, ILinearNode):
 
-    def __init__(self, data, next=None):
-        super().__init__(data)
+    def __init__(self, element, next=None):
+        super().__init__(element)
         self._next = next
 
-    def get_data(self):
-        return self._data
+    def get_element(self):
+        return self._element
 
-    def set_data(self, data):
-        self._data = data
+    def set_element(self, element):
+        self._element = element
 
     def get_next(self):
         return self._next

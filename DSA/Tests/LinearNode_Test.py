@@ -7,17 +7,17 @@ from DSA.Node.Node import Node
 
 class TestLinearNode(unittest.TestCase):
 
-    def test_data_representation(self):
+    def test_element_representation(self):
         node = LinearNode(42)
 
-        self.assertEqual(node.get_data(), 42)
+        self.assertEqual(node.get_element(), 42)
 
-    def test_set_data(self):
+    def test_set_element(self):
         node = LinearNode(1)
 
-        node.set_data(2)
+        node.set_element(2)
 
-        self.assertEqual(node.get_data(), 2)
+        self.assertEqual(node.get_element(), 2)
 
     def test_next_defaults_to_none(self):
         node = LinearNode("first")
