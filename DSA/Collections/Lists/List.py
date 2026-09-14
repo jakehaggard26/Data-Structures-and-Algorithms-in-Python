@@ -1,5 +1,5 @@
 from DSA.Collections.Lists.IList import IList
-from DSA.Node.Node import Node
+from DSA.Node.LinearNode import LinearNode
 
 class List(IList):
 
@@ -10,30 +10,30 @@ class List(IList):
     """
 
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self._head = None
+        self._tail = None
         self._count = 0
 
-    def first(self) -> Node:
+    def first(self) -> LinearNode:
         """
             Returns a reference to the first node in the list.
         """
 
-        return self.head
+        return self._head
 
-    def last(self) -> Node:
+    def last(self) -> LinearNode:
         """
             Returns a reference to the last node in the list.
         """
 
-        return self.tail
+        return self._tail
 
     def is_empty(self) -> bool:
         """
             Returns True if the list is empty, False otherwise.
         """
 
-        return self.head is None
+        return self._head is None
 
     def size(self) -> int:
         """
@@ -47,14 +47,14 @@ class List(IList):
 
             Time Complexity: O(n), where n is the number of nodes in the list.
         """
-        current = self.head
+        current = self._head
         result = []
         while current is not None:
-            result.append(str(current.data))
-            current = current.next
+            result.append(str(current.get_element()))
+            current = current.get_next()
         return " -> ".join(result)
 
-    def contains(self, node: Node) -> bool:
+    def contains(self, node: LinearNode) -> bool:
 
         """
             Returns True if the list contains the given node, False otherwise.
@@ -64,7 +64,7 @@ class List(IList):
 
         is_found = False
 
-        curr: Node = self.head
+        curr: LinearNode = self._head
 
         while curr:
             
@@ -72,100 +72,85 @@ class List(IList):
                 is_found = True
                 break
 
-            curr = curr.next
+            curr = curr.get_next()
 
         return is_found
 
 
-    def remove(self, node: Node) -> Node:
+    def remove(self, node: LinearNode) -> LinearNode:
         """
             Removes the given node from the list and returns it.
 
             Time Complexity: O(n^2), where n is the number of nodes in the list.
         """
 
-        output: Node = None
-        curr: Node = self.head
+        previous = None
+        current = self._head
 
-        while curr:
+        while current is not None:
+            if current.get_element() == node.get_element():
+                if previous is None:
+                    self._head = current.get_next()
+                else:
+                    previous.set_next(current.get_next())
 
-            if curr.get_element() == node.get_element():
+                if current is self._tail:
+                    self._tail = previous
 
-                # Store a copy of the node to be removed
-                output = Node(curr.get_element())
+                self._count -= 1
+                return current
 
-                # Update references (see cases below)
+            previous = current
+            current = current.get_next()
 
-                # If the node to be removed is the head, update head to the next node
-                if(curr == self.head):
-                    self.head = curr.next
-
-                # If the node to be removed is the tail, update tail to the previous node
-                if(curr == self.tail):
-                    temp: Node = self.head
-                    # Loop until we find the node before the tail
-                    while temp.next != self.tail:
-                        temp = temp.next
-                    # Update tail reference to point to the previous node of the prior tail
-                    self.tail = temp
-
-                # If the node to be removed is in the middle, update the next reference of the previous node to skip the current node
-                if(curr != self.head and curr != self.tail):
-                    temp: Node = self.head
-                    # Loop until we find the node before the current node
-                    while temp.next != curr:
-                        temp = temp.next
-                    # Update the next reference of the previous node to skip the current node
-                    temp.next = curr.next
-
-        self._count -= 1
-        
-        return output
+        return None
 
 
-    def remove_first(self) -> Node:
+    def remove_first(self) -> LinearNode:
         """
             Removes the first node from the list and returns it.
 
             Time Complexity: O(1)
         """
 
-        node: Node = None
-
-        if self.head is None:
+        if self._head is None:
             raise Exception("List is empty. Cannot remove first node.")
-            
-        node = Node(self.head.get_element())
-        self.head = self.head.next
+
+        node = self._head
+        self._head = self._head.get_next()
+        if self._head is None:
+            self._tail = None
         self._count -= 1
 
         return node
 
 
-    def remove_last(self) -> Node:
+    def remove_last(self) -> LinearNode:
 
         """
             Removes the last node from the list and returns it.
 
             Time Complexity: O(n), where n is the number of nodes in the list.
         """
-        node: Node = self.tail
-
-        if self.head is None:
+        if self._head is None:
             raise Exception("List is empty. Cannot remove last node.")
 
-        curr: Node = self.head
-
-        while curr.next != self.tail:
-            curr = curr.next
-
-        self.tail = curr
+        node = self._tail
+        if self._head is self._tail:
+            self._head = None
+            self._tail = None
+        else:
+            current = self._head
+            while current.get_next() is not self._tail:
+                current = current.get_next()
+            current.set_next(None)
+            self._tail = current
 
         self._count -= 1
 
         return node
 
-    def add_to_back(self, node: Node) -> Node:
+    def add_to_back(self, node: LinearNode) -> LinearNode:
 
         """
             Adds the given node to the end of the list.
@@ -173,24 +158,63 @@ class List(IList):
             Time Complexity: O(1)
         """
 
+        node.set_next(None)
+
         # Check if the list is empty
-        if self.head is None:
-            self.head = node
-            self.tail = node
+        if self._head is None:
+            self._head = node
+            self._tail = node
             self._count += 1
 
         # Check if the list has only one node
-        elif(self.head == self.tail):
-            self.head.next = node
-            self.tail = node
+        elif self._head is self._tail:
+            self._head.set_next(node)
+            self._tail = node
             self._count += 1
 
         # Add to the end of the list when both head and tail are not None or the same node
         else:
-            self.tail.next = node
-            self.tail = node
+            self._tail.set_next(node)
+            self._tail = node
             self._count += 1
 
         return 
 
-    
+
+    def add_to_front(self, node: LinearNode) -> None:
+
+        """
+            Adds the given node to the front of the list.
+
+            Time Complexity: O(1)
+        """
+
+        if self._head is None:
+            self._head = node
+            self._tail = node
+        else:
+            node.set_next(self._head)
+            self._head = node
+
+        self._count += 1
+
+        return
+
+
+    def add_after(self, target: LinearNode, node: LinearNode) -> None:
+
+        curr = self._head
+
+        while curr:
+            if curr.get_element() == target.get_element():
+                node.set_next(curr.get_next())
+                curr.set_next(node)
+                if curr is self._tail:
+                    self._tail = node
+                self._count += 1
+                return
+
+            curr = curr.get_next()
+
+        raise Exception(f"List Error: Can't add {node}")
+
