@@ -1,2 +1,1 @@
-from .List_ADT import List_ADT
-from .OrderedList import OrderedList
+from .List import List

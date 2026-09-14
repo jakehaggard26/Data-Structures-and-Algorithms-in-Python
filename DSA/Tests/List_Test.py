@@ -1,19 +1,19 @@
 import unittest
 
-from DSA.Collections.Lists.List_ADT import List_ADT
+from DSA.Collections.Lists.List import List
 from DSA.Node.LinearNode import LinearNode
 
 
 class TestList(unittest.TestCase):
 
     def make_list(self, *elements):
-        linked_list = List_ADT()
+        linked_list = List()
         for element in elements:
             linked_list.add_to_back(LinearNode(element))
         return linked_list
 
     def test_new_list_is_empty(self):
-        linked_list = List_ADT()
+        linked_list = List()
 
         self.assertTrue(linked_list.is_empty())
         self.assertEqual(linked_list.size(), 0)
@@ -22,7 +22,7 @@ class TestList(unittest.TestCase):
         self.assertEqual(linked_list.to_string(), "")
 
     def test_add_to_back_on_empty_list_sets_head_and_tail(self):
-        linked_list = List_ADT()
+        linked_list = List()
         node = LinearNode("first")
 
         linked_list.add_to_back(node)
@@ -33,7 +33,7 @@ class TestList(unittest.TestCase):
         self.assertEqual(linked_list.size(), 1)
 
     def test_add_to_back_does_not_attach_a_prelinked_chain(self):
-        linked_list = List_ADT()
+        linked_list = List()
         attached_node = LinearNode("attached")
         node = LinearNode("first", attached_node)
 
@@ -46,7 +46,7 @@ class TestList(unittest.TestCase):
         self.assertEqual(linked_list.size(), 1)
 
     def test_add_to_back_appends_nodes_in_order(self):
-        linked_list = List_ADT()
+        linked_list = List()
         first = LinearNode("first")
         second = LinearNode("second")
         third = LinearNode("third")
@@ -63,7 +63,7 @@ class TestList(unittest.TestCase):
         self.assertEqual(linked_list.to_string(), "first -> second -> third")
 
     def test_add_to_front_on_empty_list_sets_head_and_tail(self):
-        linked_list = List_ADT()
+        linked_list = List()
         node = LinearNode("first")
 
         linked_list.add_to_front(node)
@@ -191,7 +191,7 @@ class TestList(unittest.TestCase):
 
     def test_remove_first_on_empty_list_raises_exception(self):
         with self.assertRaisesRegex(Exception, "List is empty. Cannot remove first node."):
-            List_ADT().remove_first()
+            List().remove_first()
 
     def test_remove_last_returns_tail_and_preserves_head(self):
         linked_list = self.make_list("first", "second", "third")
@@ -220,7 +220,7 @@ class TestList(unittest.TestCase):
 
     def test_remove_last_on_empty_list_raises_exception(self):
         with self.assertRaisesRegex(Exception, "List is empty. Cannot remove last node."):
-            List_ADT().remove_last()
+            List().remove_last()
 
     def test_add_after_inserts_after_matching_node(self):
         linked_list = self.make_list("first", "last")
@@ -260,7 +260,7 @@ class TestList(unittest.TestCase):
 
     def test_add_after_on_empty_list_raises_exception(self):
         with self.assertRaisesRegex(Exception, "List Error"):
-            List_ADT().add_after(LinearNode("target"), LinearNode("new"))
+            List().add_after(LinearNode("target"), LinearNode("new"))
 
     def test_add_after_missing_node_raises_exception_without_mutating_list(self):
         linked_list = self.make_list("first", "last")
