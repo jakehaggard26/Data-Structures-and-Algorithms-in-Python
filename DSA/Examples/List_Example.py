@@ -1,4 +1,4 @@
-from DSA.Collections.Lists.List_ADT import List
+from DSA.Collections.Lists.List_ADT import List_ADT
 from DSA.Node.LinearNode import LinearNode
 
 
@@ -10,7 +10,7 @@ from DSA.Node.LinearNode import LinearNode
     when completed.
 """
 def main() -> None:
-    workflow = List()
+    workflow = List_ADT()
 
     # Add regular fulfillment tasks in processing order.
     receive_order = LinearNode("Receive order")

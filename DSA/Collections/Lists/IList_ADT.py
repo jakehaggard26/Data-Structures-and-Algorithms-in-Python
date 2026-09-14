@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from DSA.Node.Node import Node
 
-class IList(ABC):
+class IList_ADT(ABC):
 
     @abstractmethod
     def __init__(self):

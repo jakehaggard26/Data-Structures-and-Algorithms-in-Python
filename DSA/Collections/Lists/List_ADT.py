@@ -1,7 +1,7 @@
-from DSA.Collections.Lists.IList_ADT import IList
+from DSA.Collections.Lists.IList_ADT import IList_ADT
 from DSA.Node.LinearNode import LinearNode
 
-class List(IList):
+class List_ADT(IList_ADT):
 
     """
         A class representing a singly linked list. This is an unordered list.
