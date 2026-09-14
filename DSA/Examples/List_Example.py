@@ -1,4 +1,4 @@
-from DSA.Collections.Lists.List import List
+from DSA.Collections.Lists.List_ADT import List
 from DSA.Node.LinearNode import LinearNode
 
 

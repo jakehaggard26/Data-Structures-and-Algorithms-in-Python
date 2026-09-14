@@ -1,4 +1,4 @@
-from DSA.Collections.Lists.IList import IList
+from DSA.Collections.Lists.IList_ADT import IList
 from DSA.Node.LinearNode import LinearNode
 
 class List(IList):
